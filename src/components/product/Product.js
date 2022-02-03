@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FaTrashAlt } from "react-icons/fa";
 const Product = (props) => {
   return (
     <div className="product">
@@ -17,8 +17,11 @@ const Product = (props) => {
       <button className={`${"btn"} ${"inc"}`} onClick={props.onIncrement}>
         +
       </button>
-      <button className="btn" onClick={props.onDecrement}>
-        -
+      <button
+        className={`${"btn"} ${props.quantity === 1 && "remove"}`}
+        onClick={props.onDecrement}
+      >
+        {props.quantity > 1 ? "-" : <FaTrashAlt></FaTrashAlt>}
       </button>
       <button className="btn" onClick={props.onDelete}>
         Delete
