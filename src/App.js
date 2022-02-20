@@ -2,7 +2,9 @@ import React from "react";
 import Navbar from "./components/navbar/Navbar";
 import ProductList from "./components/productList/ProductList";
 import Wrapper from "./components/hoc/Wrapper";
+import react from "react";
 // import HookCounter from "./components/HookCounter";
+export const userContext = react.createContext();
 class App extends React.Component {
   state = {
     products: [
@@ -57,17 +59,19 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Navbar
-          totalItems={this.state.products.filter((p) => p.quantity > 0)}
-        ></Navbar>
+        <userContext.Provider value={"sina"}>
+          <Navbar
+            totalItems={this.state.products.filter((p) => p.quantity > 0)}
+          ></Navbar>
 
-        <ProductList
-          products={this.state.products}
-          onChange={this.changeHandler}
-          onDecrement={this.decrementHandler}
-          onIncrement={this.incrementHandler}
-          onDelete={this.deleteHandler}
-        ></ProductList>
+          <ProductList
+            products={this.state.products}
+            onChange={this.changeHandler}
+            onDecrement={this.decrementHandler}
+            onIncrement={this.incrementHandler}
+            onDelete={this.deleteHandler}
+          ></ProductList>
+        </userContext.Provider>
       </>
     );
   }

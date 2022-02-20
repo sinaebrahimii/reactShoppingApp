@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "../../App";
 import { FaTrashAlt } from "react-icons/fa";
 const Product = (props) => {
+  const user = useContext(userContext);
+  console.log(user);
   return (
     <div className="product">
       <p>{props.title}</p>
